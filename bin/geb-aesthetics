@@ -1,0 +1,57 @@
+#!/bin/bash
+# GEB Aesthetics - Main entry point
+
+set -euo pipefail
+
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+readonly COMMAND="${1:-}"
+
+show_help() {
+    cat << 'EOF'
+GEB Aesthetics - Multi-modal Creative Intelligence
+
+Usage:
+  geb-aesthetics <command> [options]
+
+Commands:
+  init      Initialize a new creative project
+  generate  Generate L1-L5 specifications
+  verify    Check cross-modal consistency
+  export    Export production-ready assets
+  help      Show this help message
+
+Examples:
+  geb-aesthetics init --name "My Film" --type movie
+  geb-aesthetics generate --layer L1 --concept "cyberpunk romance"
+  geb-aesthetics verify --strict
+  geb-aesthetics export --format premiere
+
+EOF
+}
+
+main() {
+    case "$COMMAND" in
+        init)
+            "${SCRIPT_DIR}/scripts/init.sh" "${@:2}"
+            ;;
+        generate)
+            "${SCRIPT_DIR}/scripts/generate.sh" "${@:2}"
+            ;;
+        verify)
+            "${SCRIPT_DIR}/scripts/verify.sh" "${@:2}"
+            ;;
+        export)
+            "${SCRIPT_DIR}/scripts/export.sh" "${@:2}"
+            ;;
+        help|--help|-h)
+            show_help
+            ;;
+        *)
+            echo "Unknown command: $COMMAND"
+            show_help
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"

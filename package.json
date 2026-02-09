@@ -1,0 +1,41 @@
+{
+  "name": "geb-aesthetics",
+  "slug": "geb-aesthetics",
+  "displayName": "GEB Aesthetics - Multi-modal Creative Intelligence",
+  "version": "1.0.0",
+  "description": "Gödel, Escher, Bach inspired multi-modal creative system with 5-layer recursive Spec architecture",
+  "author": "weiyangzen",
+  "license": "MIT",
+  "homepage": "https://github.com/weiyangzen/GEB_Aesthetics",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weiyangzen/GEB_Aesthetics.git"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "creative",
+    "multi-modal",
+    "geb",
+    "aesthetics",
+    "film",
+    "music",
+    "writing",
+    "recursive"
+  ],
+  "engines": {
+    "openclaw": ">=2026.2.0"
+  },
+  "bin": {
+    "geb-aesthetics": "./bin/geb-aesthetics"
+  },
+  "openclaw": {
+    "entry": "SKILL.md",
+    "emoji": "🎨",
+    "category": "creative",
+    "requires": {
+      "agents": ["creative", "coding"],
+      "models": ["openai-proxy/gpt-5.3-codex"]
+    }
+  }
+}
