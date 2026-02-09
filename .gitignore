@@ -1,0 +1,15 @@
+# Build artifacts
+*.log
+*.tmp
+.DS_Store
+
+# Project outputs
+*/assets/generated/
+*/exports/
+
+# IDE
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
