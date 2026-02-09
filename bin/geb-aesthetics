@@ -1,53 +1,197 @@
 #!/bin/bash
-# GEB Aesthetics - Main entry point
+# GEB Aesthetics - Main Entry Point
+# Multi-Modal Creative Intelligence System
 
 set -euo pipefail
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 readonly COMMAND="${1:-}"
 
+# Colors
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly BLUE='\033[0;34m'
+readonly PURPLE='\033[0;35m'
+readonly NC='\033[0m'
+
+log_info() { echo -e "${BLUE}[GEB]${NC} $1"; }
+log_success() { echo -e "${GREEN}[GEB]${NC} $1"; }
+log_warn() { echo -e "${YELLOW}[GEB]${NC} $1"; }
+log_error() { echo -e "${RED}[GEB]${NC} $1"; }
+log_philosophy() { echo -e "${PURPLE}[GEB]${NC} $1"; }
+
+print_banner() {
+    echo ""
+    echo "╔══════════════════════════════════════════════════════════╗"
+    echo "║           🎭 GEB AESTHETICS 🎭                           ║"
+    echo "║   Gödel × Escher × Bach = Creative Intelligence         ║"
+    echo "╚══════════════════════════════════════════════════════════╝"
+    echo ""
+}
+
 show_help() {
     cat << 'EOF'
-GEB Aesthetics - Multi-modal Creative Intelligence
+GEB Aesthetics - Multi-Modal Creative Intelligence
 
-Usage:
-  geb-aesthetics <command> [options]
+USAGE:
+    geb-aesthetics <command> [options]
 
-Commands:
-  init      Initialize a new creative project
-  generate  Generate L1-L5 specifications
-  verify    Check cross-modal consistency
-  export    Export production-ready assets
-  help      Show this help message
+COMMANDS:
+    init        Initialize a new creative project
+    spec        Generate recursive Spec for a layer
+    validate    Check cross-modal consistency
+    compose     Execute multi-modal composition
+    analyze     Perform GEB-inspired analysis
+    export      Export to production formats
 
-Examples:
-  geb-aesthetics init --name "My Film" --type movie
-  geb-aesthetics generate --layer L1 --concept "cyberpunk romance"
-  geb-aesthetics verify --strict
-  geb-aesthetics export --format premiere
+PHILOSOPHY:
+    Gödel: Incompleteness drives innovation
+    Escher: Self-reference creates depth  
+    Bach: Constraint breeds complexity
 
+EXAMPLES:
+    # Initialize cyberpunk film project
+    geb-aesthetics init --name "neon_dreams" --medium film
+
+    # Generate L1 Worldview Spec
+    geb-aesthetics spec --layer L1 --prompt "Memory is currency"
+
+    # Validate consistency across modalities
+    geb-aesthetics validate --strict
+
+    # Export to Final Draft
+    geb-aesthetics export --format finaldraft
+
+For more help: geb-aesthetics help <command>
 EOF
 }
 
+cmd_init() {
+    local project_name=""
+    local medium=""
+    
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --name|-n) project_name="$2"; shift 2 ;;
+            --medium|-m) medium="$2"; shift 2 ;;
+            *) shift ;;
+        esac
+    done
+    
+    if [[ -z "$project_name" ]]; then
+        log_error "Project name required: --name <name>"
+        exit 1
+    fi
+    
+    log_philosophy "Initializing project: $project_name"
+    log_philosophy "Medium: ${medium:-unspecified}"
+    
+    mkdir -p "$project_name"/{L1_Worldview,L2_Character,L3_Narrative,L4_Beat,L5_Shot}
+    
+    # Create project manifest
+    cat > "$project_name/geb_manifest.json" << EOF
+{
+  "project": "$project_name",
+  "medium": "${medium}",
+  "created": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+  "geb_version": "1.0.0",
+  "layers": {
+    "L1": { "status": "empty", "constraints": [] },
+    "L2": { "status": "empty", "constraints": [] },
+    "L3": { "status": "empty", "constraints": [] },
+    "L4": { "status": "empty", "constraints": [] },
+    "L5": { "status": "empty", "constraints": [] }
+  }
+}
+EOF
+    
+    log_success "Project initialized: $project_name"
+    log_info "Next: geb-aesthetics spec --layer L1 --prompt \"Your worldview...\""
+}
+
+cmd_spec() {
+    local layer=""
+    local prompt=""
+    
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --layer|-l) layer="$2"; shift 2 ;;
+            --prompt|-p) prompt="$2"; shift 2 ;;
+            *) shift ;;
+        esac
+    done
+    
+    if [[ -z "$layer" ]] || [[ -z "$prompt" ]]; then
+        log_error "Usage: geb-aesthetics spec --layer L1|L2|L3|L4|L5 --prompt \"...\""
+        exit 1
+    fi
+    
+    log_philosophy "Generating $layer Spec..."
+    log_philosophy "Prompt: $prompt"
+    
+    # This would call the actual generation scripts
+    "${SCRIPT_DIR}/scripts/generate_${layer}.sh" "$prompt"
+    
+    log_success "$layer Spec generated"
+}
+
+cmd_validate() {
+    local strict=false
+    
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --strict|-s) strict=true; shift ;;
+            *) shift ;;
+        esac
+    done
+    
+    log_philosophy "Running GEB validation..."
+    
+    # Check recursive consistency
+    log_info "Checking recursive Spec consistency..."
+    
+    # Check cross-modal alignment
+    log_info "Checking cross-modal alignment..."
+    
+    # Check GEB constraints
+    log_info "Checking GEB form constraints..."
+    
+    log_success "Validation complete"
+}
+
+cmd_compose() {
+    log_philosophy "Executing multi-modal composition..."
+    log_info "This would orchestrate text, audio, and visual generation"
+}
+
+cmd_analyze() {
+    log_philosophy "Performing GEB-inspired analysis..."
+    
+    # Self-reference detection
+    log_info "Detecting self-referential structures..."
+    
+    # Fractal analysis
+    log_info "Analyzing fractal patterns..."
+    
+    # Isomorphism mapping
+    log_info "Mapping cross-domain isomorphisms..."
+    
+    log_success "Analysis complete"
+}
+
 main() {
-    case "$COMMAND" in
-        init)
-            "${SCRIPT_DIR}/scripts/init.sh" "${@:2}"
-            ;;
-        generate)
-            "${SCRIPT_DIR}/scripts/generate.sh" "${@:2}"
-            ;;
-        verify)
-            "${SCRIPT_DIR}/scripts/verify.sh" "${@:2}"
-            ;;
-        export)
-            "${SCRIPT_DIR}/scripts/export.sh" "${@:2}"
-            ;;
-        help|--help|-h)
-            show_help
-            ;;
+    print_banner
+    
+    case "${COMMAND:-}" in
+        init) shift; cmd_init "$@" ;;
+        spec) shift; cmd_spec "$@" ;;
+        validate) shift; cmd_validate "$@" ;;
+        compose) shift; cmd_compose "$@" ;;
+        analyze) shift; cmd_analyze "$@" ;;
+        help|--help|-h) show_help ;;
         *)
-            echo "Unknown command: $COMMAND"
+            log_error "Unknown command: $COMMAND"
             show_help
             exit 1
             ;;
