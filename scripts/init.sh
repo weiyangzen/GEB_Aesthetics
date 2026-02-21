@@ -5,6 +5,9 @@ set -euo pipefail
 
 readonly PROJECT_NAME="${1:-}"
 readonly PROJECT_TYPE="${2:-movie}"
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source "${SCRIPT_DIR}/scripts/_evo_guard.sh"
+evo_init
 
 if [[ -z "$PROJECT_NAME" ]]; then
     echo "Usage: init.sh <project_name> [movie|music|literature|game]"
@@ -13,8 +16,9 @@ fi
 
 echo "🎨 GEB Aesthetics: Initializing project '$PROJECT_NAME'"
 echo "   Type: $PROJECT_TYPE"
+evo_log "init" "project=${PROJECT_NAME} type=${PROJECT_TYPE}"
 
-mkdir -p "$PROJECT_NAME"/{L1_Worldview,L2_Character,L3_Narrative,L4_Beat,L5_Execution,assets}
+run_with_retry 3 mkdir -p "$PROJECT_NAME"/{L1_Worldview,L2_Character,L3_Narrative,L4_Beat,L5_Execution,assets}
 
 cat > "$PROJECT_NAME/README.md" << EOF
 # $PROJECT_NAME
@@ -42,3 +46,4 @@ cat > "$PROJECT_NAME/README.md" << EOF
 EOF
 
 echo "✅ Project initialized: $PROJECT_NAME/"
+evo_log "init" "completed project=${PROJECT_NAME}"

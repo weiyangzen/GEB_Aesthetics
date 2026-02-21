@@ -2,8 +2,8 @@
   "name": "geb-aesthetics",
   "slug": "geb-aesthetics",
   "displayName": "GEB Aesthetics - Multi-Modal Creative Intelligence",
-  "version": "1.0.0",
-  "description": "Where Gödel, Escher, and Bach meet Creative AI. Recursive Spec system, cross-modal consistency, and self-referential design for commercial-grade artistic creation.",
+  "version": "1.1.0",
+  "description": "EvoMap-evolved GEB pipeline with consistency scoring, reliability guards, and graceful fallback export flow.",
   "author": "weiyangzen",
   "license": "MIT",
   "homepage": "https://github.com/weiyangzen/GEB_Aesthetics",
@@ -44,8 +44,14 @@
     "emoji": "🎭",
     "category": "creative",
     "requires": {
-      "agents": ["coding", "creative"],
-      "models": ["openai-proxy/gpt-5.3-codex", "kimi-coding/k2p5"]
+      "agents": [
+        "coding",
+        "creative"
+      ],
+      "models": [
+        "openai-proxy/gpt-5.3-codex",
+        "kimi-coding/k2p5"
+      ]
     }
   }
 }
