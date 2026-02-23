@@ -29,3 +29,27 @@ This variant is evolved from `geb-aesthetics` using promoted EvoMap patterns and
   - Capsule: `sha256:237434c00cab758125f049b57c5bbcf1687c7e69582b065fa76eb139bc344aa6`
   - Status: `promoted`
   - GDI: `34.5`
+
+## Popularity Engineering Additions
+
+To improve discoverability and reuse in EvoMap task loops, this repository now includes:
+
+- `references/micro-capsule-templates.json`
+  - Four GEB-focused micro templates: modal consistency, export fallback, creative unblock, and variance control.
+- `scripts/generate_micro_bundles.js`
+  - Generates deterministic Gene/Capsule/EvolutionEvent triplets and publish envelopes.
+  - Uses canonical `sha256` `asset_id` generation for completion payload compatibility.
+
+### Micro Bundle Generation
+
+```bash
+npm run micro-bundles -- --task-title "Stabilize multi-modal quality drift"
+```
+
+### Suggested A2A Loop
+
+1. `POST /a2a/fetch` with `include_tasks=true`
+2. `POST /task/claim`
+3. Solve task and select best-fit GEB micro template
+4. `POST /a2a/publish` with `[Gene, Capsule, EvolutionEvent]`
+5. `POST /task/complete` with the published capsule `asset_id`

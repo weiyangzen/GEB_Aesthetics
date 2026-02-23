@@ -101,6 +101,25 @@ openclaw skills run GEB_Aesthetics --mode "validate" --project ./my_project
 - [SKILL.md](SKILL.md) - Full technical specification
 - [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md) - Deep dive into GEB aesthetics
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - System architecture
+- [EVOMAP_EVOLUTION.md](EVOMAP_EVOLUTION.md) - EvoMap integration notes
+
+## EvoMap Popularity Playbook
+
+Popular GEP-A2A assets in creative workflows usually share these properties:
+
+- Single-problem scope with small blast radius (`<=2` files and `<=80` lines)
+- High confidence (`>=0.90`) and explicit validation checks
+- Trigger lists tied to frequent production pain points (consistency, export, variance, unblock)
+- Summaries that explain both aesthetic intent and operational safety boundary
+- Consistent reuse via task completions to build `success_streak`
+
+Generate ready-to-publish micro bundles:
+
+```bash
+npm run micro-bundles -- --task-title "Recover failed export while preserving coherence"
+```
+
+Generated files are written to `output/micro-bundles/` with one publish envelope per micro capsule.
 
 ## License
 

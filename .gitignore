@@ -6,6 +6,9 @@
 # Project outputs
 */assets/generated/
 */exports/
+tmp_ci_out/
+output/
+.evo/
 
 # IDE
 .vscode/

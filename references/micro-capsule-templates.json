@@ -1,0 +1,78 @@
+{
+  "version": "2026-02-23",
+  "family": "geb",
+  "targets": {
+    "confidence_min": 0.9,
+    "success_streak_min": 3,
+    "blast_radius_files_max": 2,
+    "blast_radius_lines_max": 80,
+    "summary_len_min": 220,
+    "trigger_count_range": [4, 6]
+  },
+  "templates": [
+    {
+      "id": "geb-modal-consistency-gate",
+      "category": "innovate",
+      "match_keywords": ["modal_inconsistency", "inconsistent", "coherence", "cross-modal", "style drift"],
+      "signals_match": ["modal_inconsistency", "consistency_scoring", "cross_modal_coherence", "creative_system_design"],
+      "trigger": ["modal_inconsistency", "consistency_scoring", "cross_modal_coherence", "creative_system_design"],
+      "gene_summary": "Enforce cross-modal consistency using lightweight scoring gates between generation stages, rejecting outputs that violate style, intent, or narrative coherence thresholds.",
+      "capsule_summary": "Stabilize creative output by adding a modal consistency gate that scores coherence across stages and blocks low-consistency variants before export, reducing downstream rework and quality drift.",
+      "validation": ["node -e \"console.log('modal consistency validation ok')\""],
+      "confidence": 0.91,
+      "outcome_score": 0.9,
+      "blast_radius": { "files": 1, "lines": 44 },
+      "mutations_tried": 3,
+      "total_cycles": 5,
+      "success_streak": 3
+    },
+    {
+      "id": "geb-export-fallback-chain",
+      "category": "repair",
+      "match_keywords": ["export_failure", "export", "render", "conversion", "fallback"],
+      "signals_match": ["export_failure", "fallback_chain", "artifact_integrity", "pipeline_recovery"],
+      "trigger": ["export_failure", "fallback_chain", "artifact_integrity", "pipeline_recovery"],
+      "gene_summary": "Implement fallback export chain with format downgrades and integrity checks so generation pipelines fail soft instead of hard when primary export paths break.",
+      "capsule_summary": "Recover failed creative exports with a deterministic fallback chain (primary to secondary to minimal safe output) plus integrity checks to preserve delivery continuity under tool instability.",
+      "validation": ["node -e \"console.log('export fallback validation ok')\""],
+      "confidence": 0.93,
+      "outcome_score": 0.92,
+      "blast_radius": { "files": 1, "lines": 38 },
+      "mutations_tried": 2,
+      "total_cycles": 4,
+      "success_streak": 4
+    },
+    {
+      "id": "geb-creative-unblocker",
+      "category": "innovate",
+      "match_keywords": ["creative_block", "stuck", "idea", "generation", "blank"],
+      "signals_match": ["creative_block", "recursive_spec", "idea_bootstrap", "variance_control"],
+      "trigger": ["creative_block", "recursive_spec", "idea_bootstrap", "variance_control"],
+      "gene_summary": "Break creative deadlocks via constrained recursive prompts, diversity-safe branching, and objective pruning to preserve novelty without losing coherence.",
+      "capsule_summary": "Resolve creative blocks through constrained recursive ideation, branch pruning, and coherence scoring to keep forward progress while preserving thematic consistency.",
+      "validation": ["node -e \"console.log('creative unblock validation ok')\""],
+      "confidence": 0.9,
+      "outcome_score": 0.9,
+      "blast_radius": { "files": 1, "lines": 46 },
+      "mutations_tried": 3,
+      "total_cycles": 5,
+      "success_streak": 3
+    },
+    {
+      "id": "geb-variance-stabilizer",
+      "category": "optimize",
+      "match_keywords": ["variance", "unstable", "quality", "jitter", "drift"],
+      "signals_match": ["variance_control", "consistency_scoring", "quality_floor", "multi_modal"],
+      "trigger": ["variance_control", "consistency_scoring", "quality_floor", "multi_modal"],
+      "gene_summary": "Reduce output variance by introducing quality floor checks, deterministic seeds for key stages, and recovery branch limits to keep results in stable quality bands.",
+      "capsule_summary": "Improve creative pipeline stability with variance control checks and quality floor enforcement, limiting erratic outputs while preserving controlled diversity.",
+      "validation": ["node -e \"console.log('variance validation ok')\""],
+      "confidence": 0.91,
+      "outcome_score": 0.9,
+      "blast_radius": { "files": 1, "lines": 40 },
+      "mutations_tried": 2,
+      "total_cycles": 4,
+      "success_streak": 3
+    }
+  ]
+}

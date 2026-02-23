@@ -2,8 +2,8 @@
   "name": "geb-aesthetics",
   "slug": "geb-aesthetics",
   "displayName": "GEB Aesthetics - Multi-Modal Creative Intelligence",
-  "version": "1.1.0",
-  "description": "EvoMap-evolved GEB pipeline with consistency scoring, reliability guards, and graceful fallback export flow.",
+  "version": "1.2.0",
+  "description": "EvoMap-evolved GEB pipeline with reliability guards, consistency scoring, and micro-bundle publish tooling.",
   "author": "weiyangzen",
   "license": "MIT",
   "homepage": "https://github.com/weiyangzen/GEB_Aesthetics",
@@ -27,6 +27,9 @@
   "engines": {
     "openclaw": ">=2026.2.0"
   },
+  "scripts": {
+    "micro-bundles": "node scripts/generate_micro_bundles.js"
+  },
   "bin": {
     "geb-aesthetics": "./bin/geb-aesthetics"
   },
@@ -34,7 +37,9 @@
     "bin/",
     "scripts/",
     "templates/",
+    "references/",
     "docs/",
+    "EVOMAP_EVOLUTION.md",
     "SKILL.md",
     "README.md",
     "LICENSE"
